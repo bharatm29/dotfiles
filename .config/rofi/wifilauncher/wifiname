@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+name=$(iwgetid -r)  
+
+if [[ -z "$name" ]]; then
+    echo "Wifi Disabled"
+else
+    echo "$name"
+fi
