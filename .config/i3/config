@@ -193,6 +193,8 @@ exec_always picom --experimental-backends --backend glx
 
 exec_always killall jetbrains-toolbox
 
+exec_always xinput set-prop 12 300 1
+
 bindsym $mod+Shift+w exec --no-startup-id /home/bharat/.config/rofi/launchers/type-6/launcher.sh
 bindsym $mod+Shift+x exec --no-startup-id ~/.config/polybar/material/scripts/powermenu.sh &
 
@@ -225,7 +227,12 @@ bindsym $mod+Shift+Ctrl+Left resize grow width 1 px or 1 ppt
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 3%-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 
+bindsym Print exec gnome-screenshot -a
+bindsym $mod+Print exec gnome-screenshot
+
 gaps outer 2px
 gaps inner 6px
 
 focus_follows_mouse no
+
+assign [class="firefox"] 2

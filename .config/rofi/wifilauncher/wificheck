@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+wifiname=$(iwgetid -r)
+
+if [[ -z $wifiname ]]; then
+    echo "%{F#fc4a58}󱛅%{F-}"
+else
+    echo "%{F#21bf62}󱚽%{F-}"
+fi

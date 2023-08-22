@@ -1,16 +1,83 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require("lspconfig")
 local util = require('lspconfig.util')
+local handlers = {
+    ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+    ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+}
+
 lspconfig.lua_ls.setup({ capabilities = capabilities })
 lspconfig.clangd.setup({ capabilities = capabilities })
 lspconfig.jedi_language_server.setup({ capabilities = capabilities })
-lspconfig.emmet_language_server.setup({ capabilities = capabilities })
+-- lspconfig.emmet_language_server.setup({ capabilities = capabilities })
 lspconfig.bashls.setup({
     capabilities = capabilities,
-    root_dir = lspconfig.util.root_pattern('.git');
 })
-
 lspconfig.yamlls.setup({ capabilities = capabilities })
+-- lspconfig.emmet_ls.setup({
+--     -- on_attach = on_attach,
+--     capabilities = capabilities,
+--     filetypes = { "css", "eruby", "html", "less", "sass", "scss", "svelte", "pug", "vue" },
+--     init_options = {
+--       html = {
+--         options = {
+--           -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+--           ["bem.enabled"] = true,
+--         },
+--       },
+--     }
+-- })
+-- lspconfig.tsserver.setup({
+--     capabilities = capabilities,
+--     single_file_support = true
+-- })
+lspconfig.tsserver.setup({
+    capabilities = capabilities,
+    -- on_attach = on_attach
+    handlers = handlers,
+    init_options = {
+        preferences = {
+            includeInlayParameterNameHints = 'all',
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+            importModuleSpecifierPreference = 'non-relative',
+        },
+    },
+    on_attach = function(client, bufnr)
+        client.server_capabilities.document_formatting = false
+        client.server_capabilities.document_range_formatting = false
+        on_attach(client, bufnr)
+    end,
+
+    -- settings = {
+    --     init_options = {
+    --         preferences = {
+    --             quotePreference = 'single',
+    --             disableSuggestions = true,
+    --         },
+    --         javascript = {
+    --             format = {
+    --                 indentSize = 4,
+    --             },
+    --         },
+    --     },
+    -- },
+})
+-- lspconfig.html.setup({
+--     capabilities = capabilities,
+--     -- on_attach = on_attach,
+--     handlers = handlers,
+--     on_attach = function(client, bufnr)
+--         client.server_capabilities.document_formatting = false
+--         client.server_capabilities.document_range_formatting = false
+--         on_attach(client, bufnr)
+--     end,
+--     root_dir = function() return vim.loop.cwd() end 
+-- })
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

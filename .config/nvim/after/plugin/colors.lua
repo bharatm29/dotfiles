@@ -113,6 +113,6 @@ function Dracula()
     require("dracula").load()
 end
 
--- OneDark()
+OneDark()
 -- TokyoNight()
-Dracula()
+-- Dracula()

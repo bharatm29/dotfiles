@@ -3,7 +3,7 @@
 name=$(iwgetid -r)  
 
 if [[ -z "$name" ]]; then
-    echo "Wifi Disabled"
+    echo ""
 else
     echo "$name"
 fi
