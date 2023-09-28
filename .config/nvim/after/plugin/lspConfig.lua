@@ -8,11 +8,15 @@ local handlers = {
 
 lspconfig.lua_ls.setup({ capabilities = capabilities })
 lspconfig.clangd.setup({ capabilities = capabilities })
-lspconfig.jedi_language_server.setup({ capabilities = capabilities })
+
+-- lspconfig.jedi_language_server.setup({ capabilities = capabilities })
+lspconfig.pyright.setup({ capabilities = capabilities })
+
 -- lspconfig.emmet_language_server.setup({ capabilities = capabilities })
 lspconfig.bashls.setup({
     capabilities = capabilities,
 })
+
 lspconfig.yamlls.setup({ capabilities = capabilities })
 -- lspconfig.emmet_ls.setup({
 --     -- on_attach = on_attach,
@@ -31,6 +35,7 @@ lspconfig.yamlls.setup({ capabilities = capabilities })
 --     capabilities = capabilities,
 --     single_file_support = true
 -- })
+--
 lspconfig.tsserver.setup({
     capabilities = capabilities,
     -- on_attach = on_attach
@@ -67,6 +72,7 @@ lspconfig.tsserver.setup({
     --     },
     -- },
 })
+
 -- lspconfig.html.setup({
 --     capabilities = capabilities,
 --     -- on_attach = on_attach,

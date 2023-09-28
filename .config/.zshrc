@@ -111,12 +111,22 @@ source $ZSH/oh-my-zsh.sh
 
 # Custom aliases
 alias nvimdir="cd ~/.config/nvim && nvim ."
-alias pyClass="cd /home/bharat/ProgramFiles/CollegeResource/Python && pycharm ."
+alias pyClass="cd /home/bharat/ProgramFiles/CollegeResource/Python"
 alias webClass="cd /home/bharat/ProgramFiles/CollegeResource/WebTech && code ."
 alias py="python3"
+alias install="sudo apt install"
+alias show="apt show"
 
 alias nvim='nvim --startuptime /tmp/nvim-startuptime'
+alias n='neofetch'
+alias cr='cargo run'
+alias cb='cargo build'
 
+alias fuzzy='cd $(find * | fzf)'
+alias f='cd $(find * -maxdepth 1 -type d | fzf)'
+alias ff='cd $(find * -maxdepth 1 | fzf)'
+
+alias run='universal-runner -f'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -147,3 +157,11 @@ runCpp(){
     g++-12 "$1"
     ./a.out
 }
+
+export PATH=$PATH:/home/bharat/.spicetify
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH=~/.npm-global/bin:$PATH

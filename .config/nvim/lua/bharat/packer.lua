@@ -17,6 +17,7 @@ return require('packer').startup(function(use)
   use 'navarasu/onedark.nvim'
   use "folke/tokyonight.nvim"
   use 'Mofiqul/dracula.nvim'
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   use {
       'nvim-lualine/lualine.nvim',
@@ -94,5 +95,7 @@ return require('packer').startup(function(use)
 
     use "yamatsum/nvim-cursorline"
     
-    
+    use "lukas-reineke/indent-blankline.nvim"
+
+    use 'rcarriga/nvim-notify'
 end)

@@ -113,6 +113,11 @@ function Dracula()
     require("dracula").load()
 end
 
-OneDark()
+function Catappuccin()
+    vim.cmd.colorscheme "catppuccin"
+end
+
+Catappuccin()
+-- OneDark()
 -- TokyoNight()
 -- Dracula()

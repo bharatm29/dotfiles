@@ -187,13 +187,16 @@ bindsym $mod+r mode "resize"
 
 # my configs
 exec_always ~/.config/polybar/launch.sh --material
-exec_always --no-startup-id feh --bg-scale ~/Downloads/WMMint/sunnyWallpaper.png
+exec_always --no-startup-id feh --bg-scale /home/bharat/ProgramFiles/oscustom/dotfiles/others/sunnyWallpaper.png
 
 exec_always picom --experimental-backends --backend glx
 
 exec_always killall jetbrains-toolbox
 
 exec_always xinput set-prop 12 300 1
+exec_always xinput set-prop "pointer:ELAN06C7:00 04F3:3193 Touchpad" "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 1.5
+
+exec_always libinput-gestures-setup start &
 
 bindsym $mod+Shift+w exec --no-startup-id /home/bharat/.config/rofi/launchers/type-6/launcher.sh
 bindsym $mod+Shift+x exec --no-startup-id ~/.config/polybar/material/scripts/powermenu.sh &
@@ -227,8 +230,8 @@ bindsym $mod+Shift+Ctrl+Left resize grow width 1 px or 1 ppt
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 3%-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 
-bindsym Print exec gnome-screenshot -a
-bindsym $mod+Print exec gnome-screenshot
+bindsym Print exec flameshot gui
+bindsym $mod+Print exec flameshot full
 
 gaps outer 2px
 gaps inner 6px
@@ -236,3 +239,4 @@ gaps inner 6px
 focus_follows_mouse no
 
 assign [class="firefox"] 2
+assign [class="Google-chrome"] 2
