@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+rofiTheme="\"./collegeCmds.rasi\""
+
+if [[ -z $TMUX ]]; then
+    rofi -e "No active tmux server. Please try again" -theme-str "@import $rofiTheme"
+    exit
+fi
+
+listString=" Web Tech\n Python"
+
+chosen=$(echo -e $listString | rofi -dmenu -l 2 -p "what today?" -theme-str "@import $rofiTheme")
+
+# if we didn't select anything just exit
+if [[ -z "$chosen" ]]
+then
+    exit
+elif [[ "$chosen" =~ "Tech" ]]; then
+    if ! tmux has-session -t "webTech" 2> /dev/null;
+    then
+        tmux new-session -ds "webTech" -c "/home/bharat/ProgramFiles/CollegeResource/WebTech"
+    fi
+    tmux switch-client -t "webTech" 
+else
+    if ! tmux has-session -t "python" 2> /dev/null;
+    then
+    tmux new-session -d -s "python" -c "/home/bharat/ProgramFiles/CollegeResource/Python/"
+    fi
+    tmux switch-client -t "python"
+fi
