@@ -186,36 +186,36 @@ bindsym $mod+r mode "resize"
 #}
 
 # my configs
-exec_always ~/.config/polybar/launch.sh --material
+exec_always ~/.config/polybar/launch.sh
 exec_always --no-startup-id feh --bg-scale /home/bharat/ProgramFiles/oscustom/dotfiles/others/sunnyWallpaper.png
 
 exec_always picom --experimental-backends --backend glx
 
 exec_always killall jetbrains-toolbox
 
+set $speed 1.5
 exec_always xinput set-prop 12 300 1
-exec_always xinput set-prop "pointer:ELAN06C7:00 04F3:3193 Touchpad" "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 1.5
+exec_always xinput set-prop "pointer:ELAN06C7:00 04F3:3193 Touchpad" "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, $speed
 
 exec_always libinput-gestures-setup start &
 
 bindsym $mod+Shift+w exec --no-startup-id /home/bharat/.config/rofi/launchers/type-6/launcher.sh
-bindsym $mod+Shift+x exec --no-startup-id ~/.config/polybar/material/scripts/powermenu.sh &
-
+bindsym $mod+Shift+x exec --no-startup-id ~/.config/polybar/scripts/powermenu.sh &
 
 # Colors
 # class                 border  backgr. text    indicator child_border
-client.focused          #FF0000 #285577 #ffffff #7cb342   #ffb300
-client.focused_inactive #FF0000 #285577 #ffffff #7cb342   #FFFFFF
-# client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused          #FF0000 #285577 #ffffff #7cb342   #ffb300
+client.focused          #FF0000 #285577 #f5e0dc #f38ba8   #cba6f7
+client.focused_inactive #FF0000 #285577 #f5e0dc #f38ba8   #f5e0dc
+# client.focused_inactive #333333 #5f676a #f5e0dc #484e50   #5f676a
+client.unfocused          #FF0000 #285577 #f5e0dc #f38ba8   #cba6f7
 # client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #FFFFFF
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.urgent           #2f343a #900000 #f5e0dc #900000   #f5e0dc
+client.placeholder      #000000 #0c0c0c #f5e0dc #000000   #0c0c0c
 
-client.background       #ffffff
+client.background       #f5e0dc
 
-default_border pixel 1
-default_floating_border pixel 1
+default_border pixel 2
+default_floating_border pixel 2
 
 bindsym $mod+Ctrl+Right resize shrink width 10 px or 10 ppt
 bindsym $mod+Ctrl+Up resize grow height 10 px or 10 ppt
@@ -233,6 +233,8 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 bindsym Print exec flameshot gui
 bindsym $mod+Print exec flameshot full
 
+bindsym $mod+Shift+b exec firefox &
+
 gaps outer 2px
 gaps inner 6px
 
@@ -240,3 +242,5 @@ focus_follows_mouse no
 
 assign [class="firefox"] 2
 assign [class="Google-chrome"] 2
+
+
