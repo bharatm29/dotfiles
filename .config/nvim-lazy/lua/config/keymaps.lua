@@ -8,10 +8,10 @@ vim.keymap.set("n", "<S-Tab>", "<<", opts)
 vim.keymap.set("v", "<Tab>", ">gv", opts)
 vim.keymap.set("v", "<S-Tab>", "<gv", opts)
 
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
-
 local mark = require("harpoon.mark");
 local ui = require("harpoon.ui");
 
 vim.keymap.set("n", "<leader>a", mark.add_file)
 vim.keymap.set("n", "<leader>h", ui.toggle_quick_menu)
+
+vim.keymap.set("n", "<leader>qc", ":cexp []<CR>")
