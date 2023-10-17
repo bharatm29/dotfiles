@@ -187,7 +187,7 @@ bindsym $mod+r mode "resize"
 
 # my configs
 exec_always ~/.config/polybar/launch.sh
-exec_always --no-startup-id feh --bg-scale /home/bharat/ProgramFiles/oscustom/dotfiles/others/sunnyWallpaper.png
+exec_always --no-startup-id feh --bg-scale ~/ProgramFiles/oscustom/dotfiles/others/sunnyWallpaper.png
 
 exec_always picom --experimental-backends --backend glx
 
@@ -200,7 +200,7 @@ exec_always xinput set-prop "pointer:ELAN06C7:00 04F3:3193 Touchpad" "Coordinate
 exec_always libinput-gestures-setup start &
 
 bindsym $mod+Shift+w exec --no-startup-id /home/bharat/.config/rofi/launchers/type-6/launcher.sh
-bindsym $mod+Shift+x exec --no-startup-id ~/.config/polybar/scripts/powermenu.sh &
+bindsym $mod+Shift+x exec --no-startup-id ~/.config/rofi/scripts/powermenu_t1 &
 
 # Colors
 # class                 border  backgr. text    indicator child_border

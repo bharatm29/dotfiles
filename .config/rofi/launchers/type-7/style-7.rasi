@@ -22,9 +22,17 @@ configuration {
 /*****----- Global Properties -----*****/
 * {
     font:                        "JetBrains Mono Nerd Font 10";
-    background:                  #101010;
+/*    background:                  #101010;
     background-alt:              #252525;
     foreground:                  #FFFFFF;
+    selected:                    #505050;
+    active:                      #909090;
+    urgent:                      #707070; 
+*/
+
+    background:                  #24273a;
+    background-alt:              #24273a;
+    foreground:                  #cad3f5;
     selected:                    #505050;
     active:                      #909090;
     urgent:                      #707070;
@@ -71,11 +79,12 @@ inputbar {
     spacing:                     10px;
     padding:                     100px 40px;
     background-color:            transparent;
-    background-image:            url("~/.config/rofi/images/g.png", width);
+    background-image:            url("~/.config/rofi/images/launcherBG.png", width);
     text-color:                  @foreground;
     orientation:                 horizontal;
-    children:                    [ "textbox-prompt-colon", "entry" ];
+    children:                    ["entry"];
 }
+
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
@@ -89,7 +98,7 @@ entry {
     enabled:                     true;
     expand:                      true;
     padding:                     12px 16px;
-    border-radius:               100%;
+    border-radius:               20%;
     background-color:            @background-alt;
     text-color:                  inherit;
     cursor:                      text;

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-rofiTheme="\"./collegeCmds.rasi\""
+rofiTheme="\"/home/bharat/.config/rofi/scripts/collegeCmds.rasi\""
 
 if [[ -z $TMUX ]]; then
     rofi -e "No active tmux server. Please try again" -theme-str "@import $rofiTheme"
