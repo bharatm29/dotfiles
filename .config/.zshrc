@@ -11,14 +11,14 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-export PATH=$PATH:"/home/bharat/.local/bin"
+export PATH=$PATH:"~/.local/bin"
 export PATH=$HOME/.config/rofi/scripts:$PATH
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -112,8 +112,8 @@ source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
 # Custom aliases
 alias nvimdir="cd ~/.config/nvim && nvim ."
-alias pyClass="cd /home/bharat/ProgramFiles/CollegeResource/Python"
-alias webClass="cd /home/bharat/ProgramFiles/CollegeResource/WebTech && code ."
+alias pyClass="cd ~/ProgramFiles/CollegeResource/Python"
+alias webClass="cd ~/ProgramFiles/CollegeResource/WebTech && code ."
 alias py="python3"
 alias install="sudo apt install"
 alias show="apt show"
@@ -123,13 +123,13 @@ alias n='neofetch'
 alias cr='cargo run'
 alias cb='cargo build'
 
-alias fuzzy='cd $(find * | fzf)'
-alias f='cd $(find * -maxdepth 1 -type d | fzf)'
-alias ff='cd $(find * -maxdepth 1 | fzf)'
-
 alias run='universal-runner -f'
 
 alias tmux='tmux -u'
+alias tmuxk='tmux kill-server'
+alias ccmd='ccmd 2> /dev/null'
+
+alias szsh= "source ~/.zshrc"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -174,3 +174,53 @@ export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+
+initTmux(){
+    echo "Please enter session name: "
+    read session
+    if [[ -z "$session" ]]; then
+        session="work"
+    fi
+    tmux new-session -ds "$session"
+    tmux a -t "$session"
+}
+
+bindkey -s '^f' 'nvim .^M'
+bindkey -s '^t' 'initTmux^M'
+bindkey -s '^k' 'sessionizer^M'
+bindkey -s '^g' 'ccmd^M'
+
+# configuring the promt
+function parse_git_dirty {
+  STATUS="$(git status 2> /dev/null)"
+  if [[ $? -ne 0 ]]; then printf ""; return; else printf " ["; fi
+  if echo "${STATUS}" | grep -c "renamed:"         &> /dev/null; then printf " >"; else printf ""; fi
+  if echo "${STATUS}" | grep -c "branch is ahead:" &> /dev/null; then printf " !"; else printf ""; fi
+  if echo "${STATUS}" | grep -c "new file::"       &> /dev/null; then printf " +"; else printf ""; fi
+  if echo "${STATUS}" | grep -c "Untracked files:" &> /dev/null; then printf " ?"; else printf ""; fi
+  if echo "${STATUS}" | grep -c "modified:"        &> /dev/null; then printf " *"; else printf ""; fi
+  if echo "${STATUS}" | grep -c "deleted:"         &> /dev/null; then printf " -"; else printf ""; fi
+  printf " ]"
+}
+
+parse_git_branch() {
+  # Long form
+  git rev-parse --abbrev-ref HEAD 2> /dev/null
+ # Short form
+  # git rev-parse --abbrev-ref HEAD 2> /dev/null | sed -e 's/.*\/\(.*\)/\1/'
+}
+
+NEWLINE=$'\n'
+# PROMPT='%B%F{003}   %B%F{015}%~ ${NEWLINE}%B%F{006} %b%F{015} '
+PROMPT='%B%F{011}   %B%F{005}%1d ${NEWLINE}%B%F{004} %b%F{015} '
+RPROMPT='%B%F{006}$(parse_git_branch)$(parse_git_dirty)%b'
+precmd(){
+    print ""
+}
+
+# replacing ls with exa
+alias ls='exa --icons --color=always --group-directories-first'
+alias ll='exa -alF --icons --color=always --group-directories-first'
+alias la='exa -a --icons --color=always --group-directories-first'
+alias l='exa -F --icons --color=always --group-directories-first'
+alias l.='exa -a | egrep "^\."'
