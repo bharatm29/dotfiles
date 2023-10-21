@@ -104,4 +104,9 @@ apt install lazygit ripgrep fd-find
 
 then simply copy-pasta the nvim-lazy to $USER/.config/nvim
 
+### Setting the background
 
+In the `crontab -e`:
+```
+*/5 * * * * /USR/BIN/sh /usr/local/bin/bgw.sh
+```
