@@ -27,3 +27,13 @@ vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a T
 vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
 vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
 
+-- disable netrw because it's fking trash
+vim.cmd("let g:loaded_netrw = 1")
+vim.cmd("let g:loaded_netrwPlugin = 1")
+
+-- instead of neotree or netrw show telescope file browser.
+local grp = vim.api.nvim_create_augroup("BrowserStartup", { clear = false })
+vim.api.nvim_create_autocmd("UIEnter", {
+    group = grp,
+    command = "Telescope file_browser",
+})
