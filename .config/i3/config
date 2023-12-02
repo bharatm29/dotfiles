@@ -28,7 +28,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -c 363a4f
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -187,9 +187,9 @@ bindsym $mod+r mode "resize"
 
 # my configs
 exec_always ~/.config/polybar/launch.sh
-exec_always --no-startup-id feh --bg-scale ~/ProgramFiles/oscustom/dotfiles/others/sunnyWallpaper.png
+exec_always --no-startup-id feh --bg-scale ~/ProgramFiles/oscustom/dotFiles/others/sunnyWallpaper.png
 
-exec_always picom --experimental-backends --backend glx
+exec_always picom --backend glx
 
 exec_always killall jetbrains-toolbox
 
@@ -233,7 +233,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 bindsym Print exec flameshot gui
 bindsym $mod+Print exec flameshot full
 
-bindsym $mod+Shift+b exec firefox &
+bindsym $mod+Shift+b exec google-chrome &
 
 gaps outer 2px
 gaps inner 6px
@@ -242,3 +242,5 @@ focus_follows_mouse no
 
 assign [class="firefox"] 2
 assign [class="Google-chrome"] 2
+
+exec xfsettingsd --sm-client-disable &
