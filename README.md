@@ -108,5 +108,11 @@ then simply copy-pasta the nvim-lazy to $USER/.config/nvim
 
 In the `crontab -e`:
 ```
-*/5 * * * * /USR/BIN/sh /usr/local/bin/bgw.sh
+*/5 * * * * /usr/bin/sh /usr/local/bin/bgw.sh
 ```
+
+---
+### Fixing theming
+[Fix Qt theme settings](https://unix.stackexchange.com/questions/680483/how-to-add-qt-qpa-platformtheme-qt5ct-environment-variable-in-arch-linux)
+
+[Fix Gtk themes and use xfce tools for configuring](https://www.reddit.com/r/i3wm/comments/iostnu/comment/g4g3wsr/?utm_source=share&utm_medium=web2x&context=3)
