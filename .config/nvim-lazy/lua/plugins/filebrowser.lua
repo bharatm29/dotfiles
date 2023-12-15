@@ -14,7 +14,7 @@ return {
         },
         keys = {
             {
-                "<leader>sf",
+                "<leader>e",
                 function()
                     local telescope = require("telescope")
 
@@ -36,7 +36,7 @@ return {
                 desc = "Open File Browser with the path of the current buffer",
             },
             {
-                "<leader>sF",
+                "<leader>E",
                 function()
                     local telescope = require("telescope")
 

@@ -22,6 +22,3 @@ set_keymap("n", "<leader>h", ui.toggle_quick_menu, { desc = "Toggle [H]arpoon" }
 -- clears the quickfix list
 set_keymap("n", "<leader>xc", ":cexp []<CR>", {desc = "[C]lears quickfix list"})
 set_keymap("n", "<leader>nf", "<cmd>Neotree focus<cr>", {desc = "[N]eotree [F]ocus"})
-
--- select all
-set_keymap("n", "<C-a>", "gg<S-v>G", opts)
