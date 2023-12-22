@@ -28,9 +28,9 @@ return {
                         respect_gitignore = false,
                         hidden = true,
                         grouped = true,
-                        previewer = false,
+                        previewer = true,
                         initial_mode = "normal",
-                        layout_config = { height = 40 },
+                        layout_config = { height = 20 },
                     })
                 end,
                 desc = "Open File Browser with the path of the current buffer",

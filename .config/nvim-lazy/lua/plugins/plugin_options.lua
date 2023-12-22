@@ -7,6 +7,7 @@ function ToggleVim()
     vim.cmd("noremap <Left>    <Nop><CR>")
 end
 
+
 return {
     {
         "LazyVim/LazyVim",
@@ -15,4 +16,10 @@ return {
             colorscheme = "solarized-osaka-storm",
         }
     },
+    {
+        "hrsh7th/nvim-cmp",
+        keys = {
+            "<Tab>", nil
+        }
+    }
 }

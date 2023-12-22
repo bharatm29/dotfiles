@@ -46,16 +46,25 @@ return {
     },
     {
         "rcarriga/neotest",
-         ependencies = {
+         dependencies = {
             "marilari88/neotest-vitest",
+            "nvim-neotest/neotest-go",
         },
-        config = function()
-            require("neotest").setup({
-                adapters = {
-                    require("neotest-vitest"),
+        -- config = function()
+        --     require("neotest").setup({
+        --         adapters = {
+        --             require("neotest-go"),
+        --         },
+        --     })
+        -- end,
+        opts = {
+            adapters = {
+                ["neotest-go"] = {
+                    args = { "-tags=integration" }
                 },
-            })
-        end,
+                ["neotest-vitest"] = {},
+            }
+        }
     },
 
     -- mason
@@ -66,12 +75,24 @@ return {
                 "stylua",
                 "selene",
                 "luacheck",
-                "shellcheck",
-                "shfmt",
                 "tailwindcss-language-server",
                 "typescript-language-server",
                 "css-lsp",
+
+                "pyright",
+                "black",
+
+                "shellcheck",
+                "shfmt",
+
+                "dockerfile-language-server",
+                "docker-compose-language-service"
             })
         end,
+    },
+
+    -- popup menu
+    {
+        "RishabhRD/popfix"
     },
 }
