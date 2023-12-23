@@ -46,25 +46,20 @@ return {
     },
     {
         "rcarriga/neotest",
-         dependencies = {
+        dependencies = {
             "marilari88/neotest-vitest",
             "nvim-neotest/neotest-go",
+            "rcasia/neotest-java",
         },
-        -- config = function()
-        --     require("neotest").setup({
-        --         adapters = {
-        --             require("neotest-go"),
-        --         },
-        --     })
-        -- end,
         opts = {
             adapters = {
                 ["neotest-go"] = {
-                    args = { "-tags=integration" }
+                    args = { "-tags=integration" },
                 },
                 ["neotest-vitest"] = {},
-            }
-        }
+                ["neotest-java"] = {},
+            },
+        },
     },
 
     -- mason
@@ -86,13 +81,15 @@ return {
                 "shfmt",
 
                 "dockerfile-language-server",
-                "docker-compose-language-service"
+                "docker-compose-language-service",
             })
         end,
     },
 
-    -- popup menu
     {
-        "RishabhRD/popfix"
+        "ellisonleao/gruvbox.nvim",
+        priority = 1000,
+        config = true,
+        opts = ...,
     },
 }
