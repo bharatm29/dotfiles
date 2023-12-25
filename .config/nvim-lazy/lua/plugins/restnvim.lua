@@ -46,27 +46,4 @@ return {
             search_back = true,
         })
     end,
-    keys = {
-        {
-            "<leader>rr",
-            function()
-                require("rest-nvim").run()
-            end,
-            desc = "[R]uns the [R]equest under the cursor",
-        },
-        {
-            "<leader>rl",
-            function()
-                require("rest-nvim").last()
-            end,
-            desc = "[R]uns the [L]ast ran request",
-        },
-        {
-            "<leader>rf",
-            function()
-                require("rest-nvim").run_file("%")
-            end,
-            desc = "[R]uns all the requests in the [F]ile",
-        },
-    },
 }
