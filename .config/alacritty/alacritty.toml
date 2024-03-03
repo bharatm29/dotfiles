@@ -1,10 +1,10 @@
-import = ["/home/bharat/.config/alacritty/rose-pine-theme.toml"]
+import = ["/home/bharat/.config/alacritty/gruvbox_material.toml"]
 
 [colors]
 draw_bold_text_with_bright_colors = true
 
 [font]
-size = 16
+size = 12
 
 [font.bold]
 family = "Fira Code"

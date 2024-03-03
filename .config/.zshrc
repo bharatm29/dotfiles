@@ -11,7 +11,7 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-export PATH=$PATH:"home/bharat/.local/bin"
+export PATH=$PATH:"/home/bharat/.local/bin"
 export PATH=$HOME/.config/rofi/scripts:$PATH
 
 # Set name of the theme to load --- if set to "random", it will
@@ -80,7 +80,7 @@ export PATH=$HOME/.config/rofi/scripts:$PATH
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search ssh colored-man-pages)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -233,3 +233,15 @@ alias cpu_schedutil='echo schedutil | sudo tee /sys/devices/system/cpu/cpu*/cpuf
 
 # zsh-autosuggestions keybinds
 bindkey '^ ' autosuggest-accept
+
+# ZSH_THEME="gruvbox"
+# SOLARIZED_THEME="dark"
+
+export ATUIN_NOBIND="true"
+eval "$(atuin init zsh)"
+
+bindkey '^r' atuin-search
+
+# bind to the up key, which depends on terminal mode
+bindkey '^[[A' atuin-up-search
+bindkey '^[OA' atuin-up-search

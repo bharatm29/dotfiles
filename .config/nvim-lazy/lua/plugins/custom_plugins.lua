@@ -92,4 +92,9 @@ return {
         config = true,
         opts = ...,
     },
+    'ThePrimeagen/git-worktree.nvim',
+
+    {
+        "sainnhe/gruvbox-material"
+    },
 }

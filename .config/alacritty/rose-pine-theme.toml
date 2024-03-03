@@ -1,7 +1,8 @@
 # rose pine color scheme
 [colors.primary]
 foreground = "#e0def4"
-background = "#191724"
+# background = "#0c0908"
+background = "#191723"
 dim_foreground = "#908caa"
 bright_foreground = "#e0def4"
 
