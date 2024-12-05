@@ -12,12 +12,11 @@ set_keymap("n", "<S-Tab>", "<<", opts)
 set_keymap("v", "<Tab>", ">gv", opts)
 set_keymap("v", "<S-Tab>", "<gv", opts)
 
--- harpoon keymaps
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
-
-set_keymap("n", "<leader>a", mark.add_file, { desc = "[A]dd to harpoon" })
-set_keymap("n", "<leader>h", ui.toggle_quick_menu, { desc = "Toggle [H]arpoon" })
+-- keymaps for compilation shit
+set_keymap("n", "<A-c>", ":Compile<CR>", opts)
+set_keymap("n", "<A-x>", ":Recompile<CR>", opts)
+set_keymap("n", "<A-N>", ":NextError<CR>", opts)
+set_keymap("n", "<A-P>", ":PrevError<CR>", opts)
 
 -- clears the quickfix list
 set_keymap("n", "<leader>xc", ":cexp []<CR>", { desc = "[C]lears quickfix list" })

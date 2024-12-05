@@ -19,7 +19,13 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
-        "saadparwaiz1/cmp_luasnip",
+        {
+            "garymjr/nvim-snippets",
+            opts = {
+                friendly_snippets = true,
+            },
+            dependencies = { "rafamadriz/friendly-snippets" },
+        },
     },
     opts = function()
         vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
@@ -30,8 +36,8 @@ return {
                 completeopt = "menu,menuone,noinsert",
             },
             snippet = {
-                expand = function(args)
-                    require("luasnip").lsp_expand(args.body)
+                expand = function(item)
+                    return LazyVim.cmp.expand(item.body)
                 end,
             },
             mapping = cmp.mapping.preset.insert({
@@ -53,7 +59,8 @@ return {
             }),
             sources = cmp.config.sources({
                 { name = "nvim_lsp" },
-                { name = "luasnip" },
+                -- { name = "luasnip" },
+                { name = "nvim-snippets" },
                 { name = "path" },
             }, {
                 { name = "buffer" },

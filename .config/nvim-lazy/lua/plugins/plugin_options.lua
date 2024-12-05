@@ -1,5 +1,3 @@
-require('colorizer').setup()
-
 function ToggleVim()
     vim.cmd("noremap <Up>    <Nop><CR>")
     vim.cmd("noremap <Down>    <Nop><CR>")

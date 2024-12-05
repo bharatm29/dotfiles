@@ -1,9 +1,5 @@
 return {
-    "thePrimeagen/harpoon",
     "rebelot/kanagawa.nvim",
-    {
-        "norcalli/nvim-colorizer.lua",
-    },
     {
         "iamcco/markdown-preview.nvim",
         config = function()
@@ -27,23 +23,6 @@ return {
         config = true,
     },
 
-    -- Refactoring tool
-    {
-        "ThePrimeagen/refactoring.nvim",
-        keys = {
-            {
-                "<leader>r",
-                function()
-                    require("refactoring").select_refactor()
-                end,
-                mode = "v",
-                noremap = true,
-                silent = true,
-                expr = false,
-            },
-        },
-        opts = {},
-    },
     {
         "rcarriga/neotest",
         dependencies = {
@@ -87,14 +66,28 @@ return {
     },
 
     {
-        "ellisonleao/gruvbox.nvim",
-        priority = 1000,
-        config = true,
-        opts = ...,
+        "sainnhe/gruvbox-material",
     },
-    'ThePrimeagen/git-worktree.nvim',
 
     {
-        "sainnhe/gruvbox-material"
+        "nvim-lspconfig",
+        opts = {
+            inlay_hints = { enabled = false },
+        },
+    },
+
+    -- Compilation shit
+    {
+        "ej-shafran/compile-mode.nvim",
+        tag = "v5.4.0",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            { "m00qek/baleia.nvim", tag = "v1.3.0" },
+        },
+        config = function()
+            vim.g.compile_mode = {
+                baleia_setup = true,
+            }
+        end,
     },
 }
