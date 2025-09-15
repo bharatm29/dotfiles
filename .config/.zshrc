@@ -11,7 +11,7 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-export PATH=$PATH:"/home/bharat/.local/bin"
+export PATH=$PATH:"~/.local/bin"
 export PATH=$HOME/.config/rofi/scripts:$PATH
 
 # Set name of the theme to load --- if set to "random", it will
@@ -42,7 +42,7 @@ export PATH=$HOME/.config/rofi/scripts:$PATH
 # zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -80,7 +80,7 @@ export PATH=$HOME/.config/rofi/scripts:$PATH
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search ssh colored-man-pages)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search colored-man-pages golang docker rust)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -92,11 +92,11 @@ source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 # You may need to manually set your language environment
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -111,55 +111,19 @@ source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Custom aliases
-alias nvimdir="cd ~/.config/nvim && nvim ."
-alias pyClass="cd ~/ProgramFiles/CollegeResource/Python"
-alias webClass="cd ~/ProgramFiles/CollegeResource/WebTech && code ."
 alias py="python3"
-alias install="sudo apt install"
-alias show="apt show"
 
-alias nvim='nvim --startuptime /tmp/nvim-startuptime'
 alias n='neofetch'
 alias cr='cargo run'
 alias cb='cargo build'
 
-alias run='universal-runner -f'
-
 alias tmux='tmux -u'
 alias tmuxk='tmux kill-server'
-alias ccmd='ccmd 2> /dev/null'
 
 alias szsh= "source ~/.zshrc"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-start(){
-    open "$1"
-}
-
-pyDaily(){
-    mkdir $(date '+%y-%m-%d')
-    touch "$(date '+%y-%m-%d')/$1".py
-}
-
-webDaily(){
-    webClass
-    mkdir $(date '+%y-%m-%d')
-    touch "$(date +'%y-%m-%d')/$1".html
-}
-
-myCmds(){
-    echo "pyDaily -> creates a directory of current date and entered file name of type py"
-    echo "webDaily -> opens VS code, creates a directory of current date and entered file name of type html"
-    echo "pythonClass -> changes the directory to Python class directory and opens pycharm"
-    echo "webClass -> changes the directory to WebTech class directory and opens VS Code"
-}
-
-runCpp(){
-    g++-12 "$1"
-    ./a.out
-}
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export PATH=$PATH:/home/bharat/.spicetify
 
@@ -185,10 +149,11 @@ initTmux(){
     tmux a -t "$session"
 }
 
-bindkey -s '^f' 'nvim .^M'
+# bindkey -s '^f' 'nvim .^M'
 bindkey -s '^t' 'initTmux^M'
-bindkey -s '^k' 'sessionizer^M'
-bindkey -s '^g' 'ccmd^M'
+bindkey -s '^k' 'tmux a^M'
+bindkey -s '^l' 'clear^M'
+bindkey -s '^q' 'exit^M'
 
 # configuring the promt
 function parse_git_dirty {
@@ -218,24 +183,27 @@ precmd(){
     print ""
 }
 
-# replacing ls with eza
+# replacing ls with exa
 alias ls='eza --icons --color=always --group-directories-first'
 alias ll='eza -alF --icons --color=always --group-directories-first'
 alias la='eza -a --icons --color=always --group-directories-first'
 alias l='eza -F --icons --color=always --group-directories-first'
 alias l.='eza -a | egrep "^\."'
 
-# For gaming
-#
-alias cpu_performance='echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
-alias cpu_powersave='echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
-alias cpu_schedutil='echo schedutil | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
+cl (){
+    cd $1
+    ls -a
+}
 
-# zsh-autosuggestions keybinds
+cll (){
+    cd $1
+    ll
+}
+
+export WLC_REPEAT_RATE=0
+export WLC_REPEAT_DELAY=0
+
 bindkey '^ ' autosuggest-accept
-
-# ZSH_THEME="gruvbox"
-# SOLARIZED_THEME="dark"
 
 export ATUIN_NOBIND="true"
 eval "$(atuin init zsh)"
@@ -245,3 +213,16 @@ bindkey '^r' atuin-search
 # bind to the up key, which depends on terminal mode
 bindkey '^[[A' atuin-up-search
 bindkey '^[OA' atuin-up-search
+
+alias cpu_performance='echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
+alias cpu_powersave='echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
+alias cpu_schedutil='echo schedutil | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
+
+# for mvn and other applications that depends on it. Other jdks are at /usr/lib/jvm/*
+export JAVA_HOME="/usr/lib/jvm/jdk-22-oracle-x64"
+
+alias nvim="~/.local/nvim-linux64/bin/nvim"
+
+# nim
+export PATH=$HOME/.local/bin/nim-2.2.2/bin:$PATH
+export PATH=~/.nimble/bin:$PATH
