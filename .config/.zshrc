@@ -177,7 +177,8 @@ parse_git_branch() {
 
 NEWLINE=$'\n'
 # PROMPT='%B%F{003}   %B%F{015}%~ ${NEWLINE}%B%F{006} %b%F{015} '
-PROMPT='%B%F{011}   %B%F{005}%1d ${NEWLINE}%B%F{004} %b%F{015} '
+# PROMPT='%B%F{011}   %B%F{005}%1d ${NEWLINE}%B%F{004} %b%F{015} '
+PROMPT='%B%F{011}   %B%F{005}%1d ${NEWLINE}%B%F{004} ᓚᘏᗢ%b%F{015} '
 RPROMPT='%B%F{006}$(parse_git_branch)$(parse_git_dirty)%b'
 precmd(){
     print ""
@@ -226,3 +227,4 @@ alias nvim="~/.local/nvim-linux64/bin/nvim"
 # nim
 export PATH=$HOME/.local/bin/nim-2.2.2/bin:$PATH
 export PATH=~/.nimble/bin:$PATH
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
